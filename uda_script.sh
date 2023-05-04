@@ -1,5 +1,6 @@
-az vmss list-instance-connection-info --resource-group uda-proj4-rg --name udacity-vmss
-ssh -p 50001 udacityadmin@4.193.181.106
+az vmss list-instance-connection-info --resource-group acdnd-c4-project --name udacity-vmss
+ssh -p 50000 udacityadmin@168.61.69.210
+ssh -p 50003 udacityadmin@168.61.69.210
 
 git clone https://github.com/HuuThang-1402/Udacity-Enhancing-Applications-AzureDev.git
 git checkout Deploy_to_VMSS
@@ -29,7 +30,7 @@ python3 main.py
 # Change the ACR name in the commands below.
 # Assuming the acdnd-c4-project resource group is still available with you
 # ACR name should not have upper case letter
-az acr create --resource-group uda-proj4-rg-aks --name myacr202325 --sku Basic
+az acr create --resource-group acdnd-c4-project-aks --name myacr202325 --sku Basic
 # Log in to the ACR
 az acr login --name myacr202325
 # Get the ACR login server name
@@ -44,7 +45,7 @@ docker push myacr202325.azurecr.io/azure-vote-front:v1
 # Verify if your image is up in the cloud.
 az acr repository list --name myacr202325 --output table
 # Associate the AKS cluster with the ACR
-az aks update -n udacity-cluster -g uda-proj4-rg-aks --attach-acr myacr202325
+az aks update -n udacity-cluster -g acdnd-c4-project-aks --attach-acr myacr202325
 
 # Get the ACR login server name
 az acr show --name myacr202325 --query loginServer --output table
