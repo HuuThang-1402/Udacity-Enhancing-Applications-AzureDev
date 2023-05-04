@@ -4,7 +4,6 @@
 resourceGroup="acdnd-c4-project"
 clusterName="udacity-cluster"
 
-# Install aks cli
 echo "Installing AKS CLI"
 
 sudo az aks install-cli
