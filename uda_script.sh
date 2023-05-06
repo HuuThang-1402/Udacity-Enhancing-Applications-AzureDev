@@ -51,3 +51,4 @@ az aks update -n udacity-cluster -g acdnd-c4-project-aks --attach-acr myacr20232
 az acr show --name myacr202325 --query loginServer --output table
 
 kubectl set image deployment azure-vote-front azure-vote-front=myacr202325.azurecr.io/azure-vote-front:v1
+nothing change
