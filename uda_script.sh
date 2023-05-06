@@ -1,6 +1,6 @@
-az vmss list-instance-connection-info --resource-group uda-proj4-rg --name udacity-vmss
-ssh -p 50000 udacityadmin@4.193.62.160
-ssh -p 50003 udacityadmin@4.193.62.160
+az vmss list-instance-connection-info --resource-group acdnd-c4-project --name udacity-vmss
+ssh -p 50000 udacityadmin@168.61.69.210
+ssh -p 50003 udacityadmin@168.61.69.210
 
 git clone https://github.com/HuuThang-1402/Udacity-Enhancing-Applications-AzureDev.git
 git checkout Deploy_to_VMSS

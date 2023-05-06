@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="uda-proj4-rg"
-location="southeastasia"
+resourceGroup="acdnd-c4-project"
+location="westus"
 osType="UbuntuLTS"
 vmssName="udacity-vmss"
 adminName="udacityadmin"
