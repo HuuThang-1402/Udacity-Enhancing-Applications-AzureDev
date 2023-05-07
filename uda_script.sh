@@ -1,6 +1,6 @@
 az vmss list-instance-connection-info --resource-group acdnd-c4-project --name udacity-vmss
-ssh -p 50000 udacityadmin@168.61.69.210
-ssh -p 50003 udacityadmin@168.61.69.210
+ssh -p 50000 udacityadmin@20.237.144.247
+ssh -p 50002 udacityadmin@20.237.144.247
 
 git clone https://github.com/HuuThang-1402/Udacity-Enhancing-Applications-AzureDev.git
 git checkout Deploy_to_VMSS
@@ -62,3 +62,5 @@ kubectl get pods
 
 az account set --subscription "15ddb23d-5e27-4c2c-83e2-4c57f375ff8b"
 az aks get-credentials --resource-group acdnd-c4-project-aks-eastus --name myacr202356
+gcloud container clusters get-credentials myacr202356 --region=acdnd-c4-project-aks-eastus
+az aks get-credentials --resource-group acdnd-c4-project-aks-eastus --name udacity-cluster --verbose
