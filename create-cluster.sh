@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="acdnd-c4-project"
+resourceGroup="acdnd-c4-project-aks-eastus"
+location="eastus"
 clusterName="udacity-cluster"
 
 echo "Installing AKS CLI"
@@ -9,6 +10,13 @@ echo "Installing AKS CLI"
 sudo az aks install-cli
 
 echo "AKS CLI installed"
+
+echo "STEP 0 - Creating resource group $resourceGroup..."
+
+az group create \
+--name $resourceGroup \
+--location $location \
+--verbose
 
 # Create AKS cluster
 echo "Step 1 - Creating AKS cluster $clusterName"

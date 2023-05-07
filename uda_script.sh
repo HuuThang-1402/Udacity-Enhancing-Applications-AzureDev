@@ -30,25 +30,35 @@ python3 main.py
 # Change the ACR name in the commands below.
 # Assuming the acdnd-c4-project resource group is still available with you
 # ACR name should not have upper case letter
-az acr create --resource-group acdnd-c4-project-aks --name myacr202325 --sku Basic
+az acr create --resource-group acdnd-c4-project-aks-eastus --name myacr202356 --sku Basic
 # Log in to the ACR
-az acr login --name myacr202325
+az acr login --name myacr202356
 # Get the ACR login server name
 # To use the azure-vote-front container image with ACR, the image needs to be tagged with the login server address of your registry. 
 # Find the login server address of your registry
-az acr show --name myacr202325 --query loginServer --output table
+az acr show --name myacr202356 --query loginServer --output table
 # Associate a tag to the local image. You can use a different tag (say v2, v3, v4, ....) everytime you edit the underlying image. 
-docker tag azure-vote-front:v1 myacr202325.azurecr.io/azure-vote-front:v1
-# Now you will see myacr202325.azurecr.io/azure-vote-front:v1 if you run "docker images"
+docker tag azure-vote-front:v1 myacr202356.azurecr.io/azure-vote-front:v1
+# Now you will see myacr202356.azurecr.io/azure-vote-front:v1 if you run "docker images"
 # Push the local registry to remote ACR
-docker push myacr202325.azurecr.io/azure-vote-front:v1
+docker push myacr202356.azurecr.io/azure-vote-front:v1
 # Verify if your image is up in the cloud.
-az acr repository list --name myacr202325 --output table
+az acr repository list --name myacr202356 --output table
 # Associate the AKS cluster with the ACR
-az aks update -n udacity-cluster -g acdnd-c4-project-aks --attach-acr myacr202325
+az aks update -n udacity-cluster -g acdnd-c4-project-aks-eastus --attach-acr myacr202356
 
 # Get the ACR login server name
-az acr show --name myacr202325 --query loginServer --output table
+az acr show --name myacr202356 --query loginServer --output table
 
-kubectl set image deployment azure-vote-front azure-vote-front=myacr202325.azurecr.io/azure-vote-front:v1
-nothing change
+# Deploy the application. Run the command below from the parent directory where the *azure-vote-all-in-one-redis.yaml* file is present. 
+kubectl apply -f azure-vote-all-in-one-redis.yaml
+kubectl set image deployment azure-vote-front azure-vote-front=myacr202356.azurecr.io/azure-vote-front:v1
+# Test the application at the External IP
+# It will take a few minutes to come alive. 
+kubectl get service
+# Check the status of each node
+kubectl get pods
+# Push your local changes to the remote Github repo, preferably in the Deploy_to_AKS branch
+
+az account set --subscription "15ddb23d-5e27-4c2c-83e2-4c57f375ff8b"
+az aks get-credentials --resource-group acdnd-c4-project-aks-eastus --name myacr202356
